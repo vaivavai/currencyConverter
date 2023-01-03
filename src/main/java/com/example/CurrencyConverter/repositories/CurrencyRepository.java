@@ -1,6 +1,5 @@
 package com.example.CurrencyConverter.repositories;
 
-import com.example.CurrencyConverter.controllers.CurrencyController;
 import com.example.CurrencyConverter.models.Currency;
 import java.util.Optional;
 import java.util.UUID;

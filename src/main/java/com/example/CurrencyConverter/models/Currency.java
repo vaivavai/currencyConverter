@@ -20,36 +20,12 @@ public class Currency {
   private String name;
   private Double rate;
 
-  public Currency(UUID id, String name, Double rate) {
-    this.id = id;
-    this.name = name;
-    this.rate = rate;
-  }
-
   public Currency() {
-  }
-
-  public UUID getId() {
-    return id;
-  }
-
-  public void setId(UUID id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 
   public Double getRate() {
     return rate;
   }
 
-  public void setRate(Double rate) {
-    this.rate = rate;
-  }
+
 }
