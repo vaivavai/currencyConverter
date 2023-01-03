@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping(path = "api/v1/currencies")
@@ -23,4 +24,13 @@ public class CurrencyController {
   public List<Currency> getCurrencies() {
     return currencyService.getCurrencies();
   }
+
+//  private Currency getCurrencyFromOtherAPI() {
+//    String uri = "https://www.apilayer.com";
+//    RestTemplate restTemplate = new RestTemplate();
+//
+//    Currency currency = restTemplate.getForObject(uri, Currency.class);
+//
+//    return currency;
+//  }
 }
