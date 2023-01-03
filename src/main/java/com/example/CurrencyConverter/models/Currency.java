@@ -23,9 +23,16 @@ public class Currency {
   public Currency() {
   }
 
+  public Currency(String name, double rate) {
+    this.name = name;
+    this.rate = rate;
+  }
+
   public Double getRate() {
     return rate;
   }
+
+  public String getName() { return name; }
 
 
 }
