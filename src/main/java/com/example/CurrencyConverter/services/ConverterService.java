@@ -1,27 +1,37 @@
 package com.example.CurrencyConverter.services;
 
-import java.util.HashMap;
+import com.example.CurrencyConverter.models.Currency;
+import com.example.CurrencyConverter.repositories.CurrencyRepository;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ConverterService {
 
+  private final CurrencyRepository currencyRepository;
+
+  @Autowired
+  public ConverterService(CurrencyRepository currencyRepository) {
+    this.currencyRepository = currencyRepository;
+  }
 
   public Double getConversionResult(String from, String to, Double quantity) {
-    HashMap<String, Double> rates = new HashMap<>();
-    rates.put("EUR", 1.0);
-    rates.put("GBP", 0.88);
-    rates.put("PLN", 4.67197);
 
     if (from.equalsIgnoreCase("EUR")) {
-      if(rates.containsKey(to.toUpperCase())) {
-        return quantity * rates.get(to.toUpperCase());
+
+      Optional<Currency> optionalCurrency = currencyRepository.findByName(to);
+      if (optionalCurrency.isPresent()) {
+        return quantity * optionalCurrency.get().getRate();
       } else {
-         throw new RuntimeException("can't covert to this currency");
+
+        throw new RuntimeException("can't covert to this currency");
       }
     } else {
-      if(rates.containsKey(to.toUpperCase()) && rates.containsKey(from.toUpperCase())) {
-        return quantity / rates.get(from.toUpperCase()) * rates.get(to.toUpperCase());
+      Optional<Currency> optionalFrom = currencyRepository.findByName(from);
+      Optional<Currency> optionalTo = currencyRepository.findByName(to);
+      if (optionalFrom.isPresent() && optionalTo.isPresent()) {
+        return quantity / optionalFrom.get().getRate() * optionalTo.get().getRate();
       } else {
         throw new RuntimeException("can't count for these currencies");
       }
