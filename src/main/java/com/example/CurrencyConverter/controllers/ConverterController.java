@@ -21,7 +21,7 @@ public class ConverterController {
   //Get all airports
   @GetMapping("from/{from}/to/{to}/quantity/{quantity}")
   public Double getConversionResult(@PathVariable String from, @PathVariable String to, @PathVariable Double quantity) {
-    return converterService.getConversionResult();
+    return converterService.getConversionResult(from, to, quantity);
   }
 
 }
