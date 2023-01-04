@@ -18,25 +18,24 @@ public class ConverterService {
     this.currencyRepository = currencyRepository;
   }
 
-  public Double getConversionResult(String from, String to, Double quantity) {
+  public Double getConversionResult(String from, String to, Double amount) {
 
     Optional<Currency> optionalCurrencyTo = currencyRepository.findByName(to.toUpperCase());
+    if (optionalCurrencyTo.isEmpty()) {
+      throw new CurrencyNotFoundException("Can't convert to " + to);
+    }
 
-        if (optionalCurrencyTo.isEmpty()) {
-          throw new CurrencyNotFoundException("Can't convert to " + to);
-        }
+    Optional<Currency> optionalCurrencyFrom = currencyRepository.findByName(from.toUpperCase());
+    if (optionalCurrencyFrom.isEmpty()) {
+      throw new CurrencyNotFoundException("Can't convert from " + from);
+    }
 
-        Optional<Currency> optionalCurrencyFrom = currencyRepository.findByName(from.toUpperCase());
-        if (optionalCurrencyFrom.isEmpty()) {
-          throw new CurrencyNotFoundException("Can't convert from " + from);
-        }
+    if (amount > 0) {
+      return amount * optionalCurrencyTo.get().getRate() / optionalCurrencyFrom.get().getRate();
+    } else {
+      throw new InvalidAmountInputException("The amount to be converted should be more than 0");
 
-        if (quantity > 0) {
-          return quantity * optionalCurrencyTo.get().getRate()/ optionalCurrencyFrom.get().getRate();
-        } else {
-          throw new InvalidAmountInputException("The amount to be converted should be more than 0");
-
-        }
+    }
 
   }
 }
