@@ -1,4 +1,5 @@
 package com.example.CurrencyConverter.models;
+
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -7,22 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RatesApiResponse {
-    private List<Currency> currencies = new ArrayList<>();
 
-    public static RatesApiResponse fromJson(String json) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode root = mapper.readTree(json);
-        JsonNode ratesNode = root.get("rates");
-        return mapper.treeToValue(ratesNode, RatesApiResponse.class);
-    }
+  private List<Currency> currencies = new ArrayList<>();
 
-    @JsonAnySetter
-    public void addRate(String name, double rate) {
-        currencies.add(new Currency(name, rate));
-    }
+  public static RatesApiResponse fromJson(String json) throws IOException {
+    ObjectMapper mapper = new ObjectMapper();
+    JsonNode root = mapper.readTree(json);
+    JsonNode ratesNode = root.get("rates");
+    return mapper.treeToValue(ratesNode, RatesApiResponse.class);
+  }
 
-    public List<Currency> getCurrencies
-        () {
-        return currencies;
-    }
+  @JsonAnySetter
+  public void addRate(String name, double rate) {
+    currencies.add(new Currency(name, rate));
+  }
+
+  public List<Currency> getCurrencies() {
+    return currencies;
+  }
 }

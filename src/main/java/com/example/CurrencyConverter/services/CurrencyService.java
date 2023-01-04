@@ -19,4 +19,7 @@ public class CurrencyService {
   public List<Currency> getCurrencies() {
     return currencyRepository.findAll();
   }
+
 }
+
+

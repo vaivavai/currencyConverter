@@ -6,10 +6,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.util.UUID;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "currency")
+@Getter
+@Setter
 public class Currency {
 
   @Id
@@ -27,12 +31,5 @@ public class Currency {
     this.name = name;
     this.rate = rate;
   }
-
-  public Double getRate() {
-    return rate;
-  }
-
-  public String getName() { return name; }
-
 
 }
