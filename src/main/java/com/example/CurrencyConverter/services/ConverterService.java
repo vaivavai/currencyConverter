@@ -1,5 +1,7 @@
 package com.example.CurrencyConverter.services;
 
+import com.example.CurrencyConverter.exceptions.invalidInput.InvalidAmountInputException;
+import com.example.CurrencyConverter.exceptions.notFound.CurrencyNotFoundException;
 import com.example.CurrencyConverter.models.Currency;
 import com.example.CurrencyConverter.repositories.CurrencyRepository;
 import java.util.Optional;
@@ -18,24 +20,23 @@ public class ConverterService {
 
   public Double getConversionResult(String from, String to, Double quantity) {
 
-    if (from.equalsIgnoreCase("EUR")) {
+    Optional<Currency> optionalCurrencyTo = currencyRepository.findByName(to.toUpperCase());
 
-      Optional<Currency> optionalCurrency = currencyRepository.findByName(to);
-      if (optionalCurrency.isPresent()) {
-        return quantity * optionalCurrency.get().getRate();
-      } else {
+        if (optionalCurrencyTo.isEmpty()) {
+          throw new CurrencyNotFoundException("Can't convert to " + to);
+        }
 
-        throw new RuntimeException("can't covert to this currency");
-      }
-    } else {
-      Optional<Currency> optionalFrom = currencyRepository.findByName(from);
-      Optional<Currency> optionalTo = currencyRepository.findByName(to);
-      if (optionalFrom.isPresent() && optionalTo.isPresent()) {
-        return quantity / optionalFrom.get().getRate() * optionalTo.get().getRate();
-      } else {
-        throw new RuntimeException("can't count for these currencies");
-      }
-    }
+        Optional<Currency> optionalCurrencyFrom = currencyRepository.findByName(from.toUpperCase());
+        if (optionalCurrencyFrom.isEmpty()) {
+          throw new CurrencyNotFoundException("Can't convert from " + from);
+        }
+
+        if (quantity > 0) {
+          return quantity * optionalCurrencyTo.get().getRate()/ optionalCurrencyFrom.get().getRate();
+        } else {
+          throw new InvalidAmountInputException("The amount to be converted should be more than 0");
+
+        }
 
   }
 }

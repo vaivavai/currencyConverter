@@ -24,7 +24,7 @@ public class CurrencyConfig {
 
       Request request = new Request.Builder()
           .url("https://api.apilayer.com/exchangerates_data/latest?base=eur")
-          .addHeader("apikey", "U3ad6SbNX9z3kZx0dKhtQRSl2cbHqQwq")
+          .addHeader("apikey", "{key}")
           .build();
       Response response = client.newCall(request).execute();
       String jsonResponseString = response.body().string();
