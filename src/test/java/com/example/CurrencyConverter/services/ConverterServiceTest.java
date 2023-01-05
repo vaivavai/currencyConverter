@@ -44,10 +44,9 @@ class ConverterServiceTest {
   }
 
   @Test
-  void should_Throw_If_CurrencyFrom_Does_Not_Exist() { //TODO why can't make this test the same like next???
+  void should_Throw_If_CurrencyFrom_Does_Not_Exist() {
     Double amount = 10.0;
     String currencyGPP = "GPP";
-//    Currency currencyFrom = new Currency(currencyGPP, 0.88);
 
     String currencyPLN = "PLN";
     Currency currencyTo = new Currency(currencyPLN, 4.66);

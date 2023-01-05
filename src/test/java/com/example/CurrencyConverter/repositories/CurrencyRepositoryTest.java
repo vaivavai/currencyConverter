@@ -29,6 +29,5 @@ class CurrencyRepositoryTest {
 
     Currency expected = underTest.findByName(currencyName).get();
     assertThat(expected).isEqualTo(currency);
-
   }
 }

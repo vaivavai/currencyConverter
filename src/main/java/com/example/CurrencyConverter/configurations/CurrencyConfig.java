@@ -42,7 +42,7 @@ public class CurrencyConfig {
     };
   }
 
-  @Scheduled(fixedRate = 30000, initialDelay = 30000) // 10 minutes in milliseconds
+  @Scheduled(fixedRate = 600000, initialDelay = 600000) // 10 minutes in milliseconds
   public void scheduleTaskWithFixedRate() throws Exception {
     commandLineRunner().run();
   }

@@ -11,10 +11,13 @@ public class RatesApiResponse {
 
   private List<Currency> currencies = new ArrayList<>();
 
+  // Convert JSON to RatesApiResponse Java Class
+  // Also automatically uses addRate method below to add currencies
+  // to List<Currency> variable
   public static RatesApiResponse fromJson(String json) throws IOException {
     ObjectMapper mapper = new ObjectMapper();
     JsonNode root = mapper.readTree(json);
-    JsonNode ratesNode = root.get("rates");
+    JsonNode ratesNode = root.get("rates"); // we only need this from 3rd party api response
     return mapper.treeToValue(ratesNode, RatesApiResponse.class);
   }
 
