@@ -20,7 +20,6 @@ public class RatesApiResponse {
     JsonNode ratesNode = root.get("rates"); // we only need this from 3rd party api response
     return mapper.treeToValue(ratesNode, RatesApiResponse.class);
   }
-
   @JsonAnySetter
   public void addRate(String name, double rate) {
     currencies.add(new Currency(name, rate));

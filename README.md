@@ -22,10 +22,13 @@ project, rather I advise to test all endpoints with Postman or similar to fully 
 
 **Frontend**
 
+* There are two versions, one made with JavaScript and one with Angular
 * To run the frontend start it on any server (I used VS Code live server extension)
-* It should run on http://127.0.0.1:5500 using mentioned live server
+* JavaScript version should run on http://127.0.0.1:5500 using mentioned live server and Angular on http://localhost:4200
 * Then due to CORS make sure @CrossOrigin annotation in ConverterController.java has matching
-  frontend url (in my case it is  http://127.0.0.1:5500)
+  frontend url 
+
+![img_1.png](img_1.png)
 
 ### Dependencies
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path = "api/v1/converter")
 public class ConverterController {
 
@@ -27,3 +27,4 @@ public class ConverterController {
   }
 
 }
+

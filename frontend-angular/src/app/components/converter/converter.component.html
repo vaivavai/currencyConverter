@@ -1,0 +1,38 @@
+<div class="rates">
+  <form class="add-form" (submit)="onSubmit()">
+    <div class="form-control">
+      <label for="text">Amount</label>
+      <input
+        type="number"
+        name="inputAmount"
+        [(ngModel)]="inputAmount"
+        id="number"
+        placeholder="Add Amount"
+      />
+    </div>
+    <div class="form-control">
+      <label for="text">From Currency</label>
+      <input
+        type="text"
+        name="inputFromCurrency"
+        [(ngModel)]="inputFrom"
+        id="text"
+        placeholder="Add currency"
+      />
+    </div>
+    <div class="form-control">
+      <label for="text">To Currency</label>
+      <input
+        type="text"
+        name="inputToCurrency"
+        [(ngModel)]="inputTo"
+        id="text"
+        placeholder="Add Currency"
+      />
+    </div>
+    <input type="submit" value="Convert" class="convert" />
+  </form>
+  <div class="result" *ngIf="result.convertedAmount">
+    {{ result.amount }} {{ result.from }} is worth {{ result.convertedAmount }} {{ result.to }}
+  </div>
+</div>

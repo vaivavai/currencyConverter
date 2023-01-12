@@ -1,0 +1,6 @@
+<div class="container">
+  <div class="title">Current rates with 1 EUR as base currency</div>
+  <div class="rates-container" *ngFor="let rate of rates; let i = index">
+    <div class="rate-card">{{ rate.name }} {{ rate.rate }}</div>
+  </div>
+</div>
